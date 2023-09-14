@@ -9,6 +9,7 @@ import lombok.*;
 @Data
 public class SignupRequest {
 
+    @Size(min = 4, max = 15, message = "Name must be minimum of 4 characters & maximum 15 characters !!!")
     private String name;
 
     @NotEmpty
