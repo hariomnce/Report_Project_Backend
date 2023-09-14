@@ -4,16 +4,12 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class SignupRequest {
+
+    private String name;
 
     @NotEmpty
     @Email(message = "Email Id is not valid !!!")
@@ -24,5 +20,4 @@ public class SignupRequest {
     @Pattern(regexp = "((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@%#$]).{8,20})", message = "password must be at least 6 characters & maximum 15 characters containing one Uppercase letter, one Lowercase letter, Special character and one Number")
     private String password;
 
-    private String name;
 }
