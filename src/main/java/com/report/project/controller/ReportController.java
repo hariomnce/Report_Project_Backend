@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,11 +40,16 @@ public class ReportController {
         }
     }
 
+    @GetMapping("/filtered")
+    public List<Report> getFilteredReports(@RequestPart("startDate") LocalDate startDate,
+                                           @RequestParam("endDate") LocalDate endDate) {
+        return reportServiceImpl.getFilteredReports(startDate, endDate);
+    }
+
     @PostMapping("/save")
     public ResponseEntity<Report> createReport(@Valid @RequestBody Report report) throws Exception {
         Report createdReport = reportServiceImpl.CreateReport(report);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdReport);
-
     }
 
     @PutMapping("/update/{id}")
