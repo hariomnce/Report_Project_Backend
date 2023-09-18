@@ -6,6 +6,7 @@ import com.report.project.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,6 +18,11 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Report> getAllReport() {
         return reportRepository.findAll();
+    }
+
+    @Override
+    public List<Report> getFilteredReports(LocalDate startDate, LocalDate endDate) {
+        return reportRepository.findByDateBetween(startDate, endDate);
     }
 
     @Override
