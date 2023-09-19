@@ -23,11 +23,22 @@ public class WebSecurityConfiguration {
     @Autowired
     private JwtRequestFilter requestFilter;
 
+//    private static final String[] AUTH_WHITELIST = {
+//            // -- swagger ui
+//            "/v2/api-docs",
+//            "/swagger-resources/**",
+//            "/configuration/ui",
+//            "/configuration/security",
+//            "/swagger-ui.html",
+//            "/webjars/**"
+//    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/authenticate", "/sign-up","/report/fetchAll,","/report/save").permitAll()
+                .requestMatchers("/authenticate", "/sign-up", "/report/fetchAll,", "/report/save",
+                        "/report/fetch/{id}", "/report/filtered", "/report/update/{id}", "/report/delete/{id}").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated().and()
