@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -32,6 +33,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public Report CreateReport(Report report) throws Exception {
+        report.setDate(LocalDateTime.now());
         return reportRepository.saveAndFlush(report);
     }
 
