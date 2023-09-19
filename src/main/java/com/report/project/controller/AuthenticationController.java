@@ -5,6 +5,7 @@ import com.report.project.dto.AuthenticationResponse;
 import com.report.project.serviceImpl.UserDetailsServiceImpl;
 import com.report.project.util.JwtUtil;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -42,8 +43,15 @@ public class AuthenticationController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not activated");
             return null;
         }
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
-        return new AuthenticationResponse(jwt);
+        authenticationResponse.setJwtToken(jwt);
+        if (StringUtils.isEmpty(jwt)) {
+            authenticationResponse.setStatus("Failure");
+        } else {
+            authenticationResponse.setStatus("Success");
+        }
+        return authenticationResponse;
     }
 }
