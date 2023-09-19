@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,5 +32,14 @@ public class User {
     @Size(min = 4, max = 15, message = "Name must be minimum of 4 characters & maximum 15 characters !!!")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+//    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_roles",
+//            joinColumns =
+//            @JoinColumn(name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
+//    private List<Role> roles;
+//
+//    private String roleName;
 
 }
