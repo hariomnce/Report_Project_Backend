@@ -38,7 +38,7 @@ public class WebSecurityConfiguration {
         return http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/authenticate", "/sign-up", "/report/fetchAll,", "/report/save",
-                        "/report/fetch/{id}", "/report/filtered", "/report/update/{id}", "/report/delete/{id}").permitAll()
+                        "/report/fetch/{id}", "/report/filtered", "/report/update/{id}", "/report/delete/{id}", "/userCount").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated().and()

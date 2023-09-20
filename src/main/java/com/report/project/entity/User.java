@@ -33,6 +33,9 @@ public class User {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "role", nullable = false, unique = true)
+    private String role;
+
 //    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
 //    @JoinTable(name = "user_roles",
 //            joinColumns =
