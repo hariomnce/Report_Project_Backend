@@ -21,4 +21,7 @@ public class SignupRequest {
     @Pattern(regexp = "((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@%#$]).{8,20})", message = "password must be at least 6 characters & maximum 15 characters containing one Uppercase letter, one Lowercase letter, Special character and one Number")
     private String password;
 
+    @NotEmpty
+    private String role;
+
 }

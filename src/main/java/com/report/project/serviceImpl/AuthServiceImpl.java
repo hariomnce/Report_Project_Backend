@@ -21,12 +21,19 @@ public class AuthServiceImpl implements AuthService {
         user.setName(signupRequest.getName());
         user.setEmail(signupRequest.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(signupRequest.getPassword()));
+        user.setRole(signupRequest.getRole());
         User createdUser=userRepository.saveAndFlush(user);
 
         UserDto userDto=new UserDto();
         userDto.setId(createdUser.getId());
         userDto.setEmail(createdUser.getEmail());
         userDto.setName(createdUser.getName());
+        userDto.setRole(createdUser.getRole());
         return userDto;
+    }
+
+    @Override
+    public int getUserCount() {
+        return userRepository.findByUserCount();
     }
 }

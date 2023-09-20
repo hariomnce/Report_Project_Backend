@@ -1,7 +1,9 @@
 package com.report.project.repository;
 
 import com.report.project.entity.User;
+import lombok.Value;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -14,5 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
     Optional<User> findByName(String name);
+
+    @Query(value = "SELECT count(*) FROM report_project.user;", nativeQuery = true)
+    int findByUserCount();
 
 }

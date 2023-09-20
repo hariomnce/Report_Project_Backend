@@ -6,4 +6,6 @@ import com.report.project.dto.UserDto;
 public interface AuthService {
 
     UserDto createUser(SignupRequest signupRequest) throws Exception;
+
+    int getUserCount();
 }
