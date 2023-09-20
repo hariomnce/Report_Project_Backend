@@ -41,7 +41,7 @@ public class ReportController {
     }
 
     @GetMapping("/filtered")
-    public List<Report> getFilteredReports(@RequestPart("startDate") LocalDate startDate,
+    public List<Report> getFilteredReports(@RequestParam("startDate") LocalDate startDate,
                                            @RequestParam("endDate") LocalDate endDate) {
         return reportServiceImpl.getFilteredReports(startDate, endDate);
     }
@@ -63,7 +63,7 @@ public class ReportController {
         Optional<Report> report = reportRepository.findById(id);
         if (report.isPresent()) {
             reportServiceImpl.deleteReport(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
 
         } else {
             return ResponseEntity.notFound().build();

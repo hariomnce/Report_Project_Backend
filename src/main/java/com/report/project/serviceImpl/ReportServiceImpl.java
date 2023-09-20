@@ -33,7 +33,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public Report CreateReport(Report report) throws Exception {
-        report.setDate(LocalDateTime.now());
+//        report.setDate(LocalDateTime.now());
         return reportRepository.saveAndFlush(report);
     }
 
