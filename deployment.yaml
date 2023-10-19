@@ -1,19 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-app
+  name: spring-test-app-deployment
+  labels:
+    app: spring-test-app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: springboot-app
+      app: spring-test-app
   template:
     metadata:
       labels:
-        app: springboot-app
+        app: spring-test-app
     spec:
       containers:
-        - name: springboot-app
-          image: savitsharma/report.jar
+        - name: springboot-container
+          image: savitsharma/report.jar:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
+#        - name: mysql-container
+#          image: savitsharma/mysql:latest
+#          imagePullPolicy: Always
+#          env:
+#            - name: MYSQL_ROOT_PASSWORD
+#              value: root
+#            - name: MYSQL_DATABASE
+#              value: demo
+#            - name: MYSQL_USER
+#              value: demo
+#            - name: MYSQL_PASSWORD
+#              value: 1234
+#          ports:
+#            - containerPort: 3306
